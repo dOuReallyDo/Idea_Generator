@@ -2,12 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const winston = require('winston');
 const axios = require('axios');
-const { fetchExistingIdeas } = require('./publishToGithub');
 const { generateDailyIdeas } = require('../src/generateIdea');
-const { publishUnpublishedIdeas } = require('../src/publishToGithub');
 require('dotenv').config();
 
-// Configurazione logger
+// Configurazione del logger
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
@@ -15,13 +13,10 @@ const logger = winston.createLogger({
     winston.format.json()
   ),
   transports: [
-    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'logs/combined.log' }),
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' }),
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      )
+      format: winston.format.simple()
     })
   ]
 });
@@ -180,75 +175,35 @@ function calculateSimilarity(str1, str2) {
   return 1 - (matrix[s2.length][s1.length] / maxLength);
 }
 
-async function generateDailyIdeas() {
-  try {
-    const date = new Date().toISOString().split('T')[0];
-    const ideas = [];
-
-    logger.info('🎯 Generazione delle idee giornaliere...\n');
-
-    for (const [categoryKey, categoryInfo] of Object.entries(categories)) {
-      logger.info(`\n📝 Generazione idea per ${categoryInfo.name}...`);
-      const idea = await generateIdeaWithOllama(categoryKey, categoryInfo);
-      
-      // Salva l'idea
-      const timestamp = Math.floor(Date.now() / 1000);
-      const fileName = `${date}_${categoryKey}_${timestamp}.json`;
-      const ideaPath = path.join(__dirname, '../logs/ideas', fileName);
-      
-      fs.writeFileSync(ideaPath, JSON.stringify(idea, null, 2));
-      logger.info(`✅ Idea generata e salvata: ${idea.name}`);
-      
-      ideas.push({
-        fileName,
-        idea
-      });
-
-      // Attendi 2 secondi tra le generazioni
-      await new Promise(resolve => setTimeout(resolve, 2000));
-    }
-
-    return ideas;
-  } catch (error) {
-    logger.error('Errore nella generazione delle idee:', error);
-    throw error;
-  }
-}
-
 // Funzione per stampare l'idea in formato leggibile
 function printIdea(idea) {
   console.log('\n🚀 NUOVA IDEA GENERATA');
   console.log('====================');
-  console.log(`📱 Nome: ${idea.name}`);
-  console.log(`🎯 Categoria: ${idea.category}`);
-  console.log(`❓ Problema: ${idea.problem}`);
-  console.log(`👥 Target: ${idea.target_audience}`);
-  console.log(`💎 Valore Unico: ${idea.unique_value}`);
+  console.log(`📱 Titolo: ${idea.title}`);
+  console.log(`🎯 Descrizione: ${idea.description}`);
+  console.log(`❓ Obiettivo Principale: ${idea.mainObjective}`);
   
-  console.log('\n✨ Funzionalità:');
-  idea.features.forEach(f => console.log(`  • ${f}`));
+  console.log('\n✨ Funzionalità Chiave:');
+  idea.keyFeatures.forEach(f => console.log(`  • ${f}`));
   
-  console.log('\n🛠 Tecnologie:');
-  console.log(`  • Frontend: ${idea.technologies.frontend}`);
-  console.log(`  • Backend: ${idea.technologies.backend}`);
-  console.log(`  • Database: ${idea.technologies.database}`);
-  console.log('  • Servizi Cloud:');
-  idea.technologies.cloud_services.forEach(s => console.log(`    - ${s}`));
-  console.log('  • AI/ML:');
-  idea.technologies.ai_ml.forEach(t => console.log(`    - ${t}`));
-  console.log('  • Altre tecnologie:');
-  idea.technologies.other.forEach(t => console.log(`    - ${t}`));
+  console.log('\n🛠 Requisiti Tecnici:');
+  console.log(`  • Linguaggio: ${idea.technicalRequirements.language}`);
+  console.log(`  • Framework: ${idea.technicalRequirements.framework}`);
+  console.log(`  • Database: ${idea.technicalRequirements.database}`);
+  console.log('  • API Esterne:');
+  idea.technicalRequirements.externalAPIs.forEach(api => console.log(`    - ${api}`));
   
-  console.log('\n💰 Monetizzazione:', idea.monetization);
-  console.log('📢 Marketing:', idea.marketing_strategy);
+  console.log('\n⏱ Timeline:');
+  console.log(`  • Setup: ${idea.timeline.phase1} giorni`);
+  console.log(`  • Sviluppo Core: ${idea.timeline.phase2} giorni`);
+  console.log(`  • Testing: ${idea.timeline.phase3} giorni`);
+  console.log(`  • Deployment: ${idea.timeline.phase4} giorni`);
   
-  console.log('\n🗺 Roadmap di Sviluppo:');
-  idea.development_roadmap.forEach((step, i) => console.log(`  ${i + 1}. ${step}`));
-  
-  console.log('\n👣 Flusso Utente:');
-  idea.userFlow.forEach((step, i) => console.log(`  ${i + 1}. ${step}`));
-  
-  console.log('\n====================\n');
+  console.log('\n👥 Risorse:');
+  console.log(`  • Sviluppatori: ${idea.resources.developers}`);
+  console.log(`  • Designer: ${idea.resources.designers}`);
+  console.log(`  • Server: ${idea.resources.servers}`);
+  console.log(`  • Budget: $${idea.resources.budget}`);
 }
 
 async function runDailyProcess() {
@@ -258,17 +213,13 @@ async function runDailyProcess() {
     // Genera le idee
     const ideas = await generateDailyIdeas();
     logger.info(`Generate ${ideas.length} idee`);
-
-    // Aggiungi prompt ottimizzati per AutoDev
-    const ideasWithPrompts = ideas.map(idea => ({
-      ...idea,
-      autodev_prompt: generateAutoDevPrompt(idea)
-    }));
-
-    // Pubblica le idee su GitHub
-    await publishUnpublishedIdeas(ideasWithPrompts);
-    logger.info('Idee pubblicate con successo su GitHub');
-
+    
+    // Stampa le idee generate
+    ideas.forEach(idea => {
+      printIdea(idea);
+    });
+    
+    logger.info('Processo giornaliero completato con successo');
   } catch (error) {
     logger.error('Errore nel processo giornaliero:', error);
     process.exit(1);
@@ -315,13 +266,12 @@ function generateAutoDevPrompt(idea) {
 
 // Esporta le funzioni
 module.exports = {
-  generateDailyIdeas,
   printIdea,
   runDailyProcess,
   generateAutoDevPrompt
 };
 
-// Se eseguito direttamente
+// Esegui il processo se lo script è eseguito direttamente
 if (require.main === module) {
   runDailyProcess();
 } 

@@ -95,4 +95,28 @@ describe('Test IdeaGenerator', () => {
             throw error;
         }
     });
+
+    test('Gestione errori', async () => {
+        try {
+            // Simula un errore rimuovendo temporaneamente il template
+            const templatePath = path.join(__dirname, '..', 'templates', 'idea_template.json');
+            const backupPath = path.join(__dirname, '..', 'templates', 'idea_template.backup.json');
+            
+            // Backup del template
+            await fs.copyFile(templatePath, backupPath);
+            await fs.unlink(templatePath);
+            
+            // Verifica che generateDailyIdeas gestisca l'errore
+            await expect(generateDailyIdeas()).rejects.toThrow();
+            
+            // Ripristina il template
+            await fs.copyFile(backupPath, templatePath);
+            await fs.unlink(backupPath);
+            
+            logger.info('Test gestione errori completato con successo');
+        } catch (error) {
+            logger.error('Errore nel test di gestione errori:', error);
+            throw error;
+        }
+    });
 }); 

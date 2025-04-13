@@ -12,7 +12,10 @@
     "scheduler": "node scripts/scheduler.js",
     "generate-idea": "node scripts/generateIdea.js",
     "create-template": "node scripts/createTemplate.js",
-    "publish": "node scripts/publish.js"
+    "publish": "node scripts/publish.js",
+    "docs:sync": "node scripts/syncDocs.js",
+    "docs:build": "node scripts/buildDocs.js",
+    "docs:serve": "node scripts/serveDocs.js"
   },
   "keywords": [
     "idea-generator",
