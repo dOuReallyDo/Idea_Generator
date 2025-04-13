@@ -1,0 +1,21 @@
+{
+    "description": "Un'applicazione {idea} che aiuta gli utenti a gestire e organizzare le loro attività quotidiane in modo efficiente.",
+    "mainObjective": "fornire una soluzione completa per la gestione delle attività personali e professionali",
+    "keyFeatures": [
+        "Interfaccia utente intuitiva e responsive",
+        "Sincronizzazione multi-dispositivo",
+        "Notifiche personalizzabili",
+        "Integrazione con calendari esterni",
+        "Analisi delle performance e statistiche"
+    ],
+    "technicalRequirements": {
+        "language": "JavaScript",
+        "framework": "React",
+        "database": "MongoDB",
+        "externalAPIs": [
+            "Google Calendar API",
+            "Slack API",
+            "Email API"
+        ]
+    }
+} 

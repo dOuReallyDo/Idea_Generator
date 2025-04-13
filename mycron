@@ -1,0 +1,2 @@
+# Esegui il generatore di idee ogni giorno alle 09:00
+0 9 * * * cd /Users/mariocurcio/Idea_Generator && /usr/local/bin/node scripts/generateIdea.js && /usr/local/bin/node scripts/publishToGithub.js >> logs/cron.log 2>&1
