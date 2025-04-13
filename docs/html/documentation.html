@@ -137,6 +137,21 @@
             margin: 1rem 0;
         }
 
+        .featured-link {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .featured-link:hover {
+            background-color: #3182ce;
+        }
+
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -189,6 +204,7 @@
                 <ul class="nav-links">
                     <li><a href="#github">GitHub Integration</a></li>
                     <li><a href="#autodev">AutoDev Integration</a></li>
+                    <li><a href="integration.html">Guida Completa Integrazione</a></li>
                 </ul>
             </div>
 
@@ -205,6 +221,12 @@
             <section id="overview" class="content-section">
                 <h1>Idea Generator - Documentazione</h1>
                 <p>Benvenuto nella documentazione di Idea Generator, un sistema automatizzato per la generazione e pubblicazione di idee per applicazioni software.</p>
+                
+                <div class="note">
+                    <strong>Novità!</strong> Ora disponibile la <a href="integration.html">guida completa all'integrazione</a> tra Idea Generator e AutoDev.
+                </div>
+                
+                <a href="integration.html" class="featured-link">Scopri l'integrazione con AutoDev →</a>
             </section>
 
             <section id="features" class="content-section">
@@ -291,6 +313,8 @@
                     <li>Timeline di sviluppo</li>
                     <li>Risorse necessarie</li>
                 </ul>
+                
+                <p>Per una guida dettagliata sull'integrazione tra Idea Generator e AutoDev, consulta la <a href="integration.html">guida completa all'integrazione</a>.</p>
             </section>
 
             <section id="logs" class="content-section">

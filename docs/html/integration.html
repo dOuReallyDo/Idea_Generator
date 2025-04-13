@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrazione Idea Generator e AutoDev</title>
+    <style>
+        :root {
+            --primary-color: #2d3748;
+            --secondary-color: #4a5568;
+            --accent-color: #4299e1;
+            --background-color: #f7fafc;
+            --text-color: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin: 0 0 1.5rem 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background-color: #edf2f7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #edf2f7;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .note {
+            background-color: #ebf8ff;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning {
+            background-color: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .integration-diagram {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background-color: #f7fafc;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f7fafc;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Integrazione Idea Generator e AutoDev</h1>
+            <p class="subtitle">Guida completa alla configurazione e utilizzo integrato dei sistemi</p>
+        </header>
+
+        <section class="content-section">
+            <h2>Panoramica dell'Integrazione</h2>
+            <p>Il sistema di integrazione tra Idea Generator e AutoDev permette la generazione automatica di idee per applicazioni e il loro sviluppo tramite agenti AI senza intervento umano. Il flusso di lavoro è completamente automatizzato.</p>
+
+            <div class="note">
+                Questa integrazione crea un ciclo completo di innovazione: dall'idea alla pubblicazione del codice, tutto gestito automaticamente.
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Architettura del Sistema</h2>
+            <h3>Componenti Principali</h3>
+            <ul>
+                <li><strong>Idea Generator</strong>: Genera idee innovative per applicazioni basate su diverse categorie</li>
+                <li><strong>AutoDev</strong>: Sistema di sviluppo automatico che implementa le idee generate</li>
+                <li><strong>GitHub Integration</strong>: Middleware che collega i due sistemi tramite repository GitHub</li>
+            </ul>
+
+            <h3>Flusso dei Dati</h3>
+            <ol>
+                <li>Idea Generator crea nuove idee e le pubblica come issue su GitHub</li>
+                <li>Le issue vengono etichettate come "non-sviluppato"</li>
+                <li>AutoDev rileva le issue con questa etichetta e avvia lo sviluppo</li>
+                <li>Durante lo sviluppo, l'etichetta cambia in "in-sviluppo"</li>
+                <li>Al completamento, l'etichetta diventa "sviluppo-completato"</li>
+            </ol>
+        </section>
+
+        <section class="content-section">
+            <h2>Configurazione dell'Integrazione</h2>
+            <h3>Prerequisiti</h3>
+            <ul>
+                <li>Node.js v18 o superiore</li>
+                <li>Account GitHub con permessi per creare repository</li>
+                <li>Token GitHub con permessi "repo" completi</li>
+                <li>Accesso a un LLM (locale tramite Ollama o cloud tramite API)</li>
+            </ul>
+
+            <h3>Configurazione dei File .env</h3>
+            <p>Per Idea Generator (<code>~/Idea_Generator/.env</code>):</p>
+            <pre><code>GITHUB_TOKEN=il_tuo_token_qui
+GITHUB_USERNAME=dOuReallyDo
+IDEA_REPO=daily-app-ideas</code></pre>
+
+            <p>Per AutoDev (<code>~/AutoDev/.env</code>):</p>
+            <pre><code>GITHUB_USERNAME=dOuReallyDo
+GITHUB_TOKEN=il_tuo_token_qui
+PREFERRED_IDE=cursor
+WORKSPACE_ROOT=/Users/mariocurcio/AutoDev/workspace
+MAX_CONCURRENT_PROJECTS=3
+DEVELOPMENT_TIME_PER_PROJECT=7200000
+IDEA_GENERATOR_REPO=daily-app-ideas
+ANTHROPIC_API_KEY=la_tua_chiave_api_qui</code></pre>
+        </section>
+
+        <section class="content-section">
+            <h2>Esecuzione Automatica</h2>
+            <p>Il sistema è configurato per l'esecuzione automatica giornaliera tramite crontab:</p>
+            
+            <pre><code># Generazione automatica di idee ogni giorno alle 9:00
+0 9 * * * cd /Users/mariocurcio/Idea_Generator && /usr/local/bin/node scripts/dailyGenerator.js >> /Users/mariocurcio/Idea_Generator/logs/cron.log 2>&1
+
+# Esecuzione AutoDev ogni giorno alle 10:00
+0 10 * * * cd /Users/mariocurcio/AutoDev && /usr/local/bin/node src/index.js >> /Users/mariocurcio/AutoDev/logs/cron.log 2>&1</code></pre>
+
+            <p>Questo significa che:</p>
+            <ol>
+                <li>Ogni giorno alle 9:00, il sistema genererà 5 nuove idee e le pubblicherà su GitHub</li>
+                <li>Alle 10:00, AutoDev verificherà se ci sono nuove idee non sviluppate e inizierà a lavorare su di esse</li>
+            </ol>
+
+            <div class="warning">
+                Assicurarsi che il computer sia acceso e connesso a Internet negli orari programmati per l'esecuzione, altrimenti il sistema non potrà funzionare correttamente.
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Monitoraggio e Manutenzione</h2>
+            <h3>File di Log</h3>
+            <p>I file di log permettono di monitorare l'attività del sistema:</p>
+            <ul>
+                <li><code>~/Idea_Generator/logs/combined.log</code>: Log completo di Idea Generator</li>
+                <li><code>~/Idea_Generator/logs/error.log</code>: Errori di Idea Generator</li>
+                <li><code>~/Idea_Generator/logs/cron.log</code>: Output dell'esecuzione programmata</li>
+                <li><code>~/AutoDev/logs/combined.log</code>: Log completo di AutoDev</li>
+                <li><code>~/AutoDev/logs/error.log</code>: Errori di AutoDev</li>
+                <li><code>~/AutoDev/logs/cron.log</code>: Output dell'esecuzione programmata</li>
+            </ul>
+
+            <h3>Manutenzione Regolare</h3>
+            <p>Procedure consigliate per la manutenzione del sistema:</p>
+            <ol>
+                <li>Verificare regolarmente lo spazio disponibile in <code>~/AutoDev/workspace</code></li>
+                <li>Controllare la validità del token GitHub (scade dopo un certo periodo)</li>
+                <li>Monitorare il saldo delle API cloud se si utilizzano LLM cloud</li>
+                <li>Effettuare backup regolari dei progetti completati</li>
+            </ol>
+        </section>
+
+        <section class="content-section">
+            <h2>Risoluzione Problemi</h2>
+            <h3>Problemi Comuni</h3>
+            <table>
+                <tr>
+                    <th>Problema</th>
+                    <th>Possibile Causa</th>
+                    <th>Soluzione</th>
+                </tr>
+                <tr>
+                    <td>Errore "Bad credentials" in Idea Generator</td>
+                    <td>Token GitHub non valido o scaduto</td>
+                    <td>Generare un nuovo token e aggiornare il file .env</td>
+                </tr>
+                <tr>
+                    <td>AutoDev non rileva nuove idee</td>
+                    <td>Etichetta errata o permessi repo insufficienti</td>
+                    <td>Verificare le etichette delle issue e i permessi del token</td>
+                </tr>
+                <tr>
+                    <td>Problemi con il crontab</td>
+                    <td>Path errato o permessi insufficienti</td>
+                    <td>Verificare i path nel crontab e i permessi di esecuzione</td>
+                </tr>
+                <tr>
+                    <td>Errori con LLM in AutoDev</td>
+                    <td>API key scaduta o servizio non disponibile</td>
+                    <td>Verificare lo stato dell'API e aggiornare le chiavi</td>
+                </tr>
+            </table>
+        </section>
+
+        <a href="documentation.html" class="back-link">← Torna alla documentazione principale</a>
+    </div>
+</body>
+</html> 
