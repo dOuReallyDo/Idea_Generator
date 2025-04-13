@@ -1,81 +1,55 @@
 # Idea Generator 🤖
 
-Idea Generator è un sistema automatico che genera e sviluppa idee innovative per progetti software utilizzando l'intelligenza artificiale.
+Sistema automatico per la generazione e sviluppo di idee innovative per applicazioni software.
 
-## 🚀 Funzionalità Principali
+## Documentazione 📚
 
-- Generazione automatica di idee innovative
-- Sviluppo automatico con AutoDev
-- Sincronizzazione con GitHub
-- Dashboard web per il monitoraggio
-- Documentazione completa
+La documentazione completa è disponibile online all'indirizzo: [https://doureallydo.github.io/Idea_Generator](https://doureallydo.github.io/Idea_Generator)
 
-## 📚 Documentazione
+### Contenuti della Documentazione
 
-### Per Sviluppatori
-La documentazione tecnica è disponibile in [docs/developer/README.md](docs/developer/README.md)
+- **Panoramica**: Introduzione al sistema e alle sue funzionalità
+- **Installazione**: Requisiti e configurazione del sistema
+- **Utilizzo**: Guide dettagliate per l'utilizzo del sistema
+- **Integrazione**: Informazioni sull'integrazione con GitHub e AutoDev
+- **Manutenzione**: Gestione dei logs e risoluzione problemi
 
-### Per Utenti
-La guida utente è disponibile in [docs/user/README.md](docs/user/README.md)
+## Avvio Rapido 🚀
 
-### Dashboard Web
-La dashboard web è accessibile all'indirizzo: [dashboard.ideagenerator.com](https://dashboard.ideagenerator.com)
+1. Clona il repository:
+   ```bash
+   git clone https://github.com/dOuReallyDo/Idea_Generator.git
+   ```
 
-## 🛠 Installazione
+2. Installa le dipendenze:
+   ```bash
+   npm install
+   ```
 
-```bash
-# Clona il repository
-git clone https://github.com/your-username/idea-generator.git
+3. Configura il token GitHub:
+   ```bash
+   echo "GITHUB_TOKEN=il_tuo_token_qui" > .env
+   ```
 
-# Installa le dipendenze
-npm install
+4. Avvia il generatore:
+   ```bash
+   node scripts/dailyGenerator.js
+   ```
 
-# Configura le variabili d'ambiente
-cp .env.example .env
-# Modifica .env con le tue configurazioni
+## Struttura del Progetto 📁
+
+```
+Idea_Generator/
+├── docs/               # Documentazione
+├── scripts/           # Script principali
+├── logs/              # File di log
+└── .env               # Configurazione
 ```
 
-## 📋 Utilizzo
+## Contribuire 🤝
 
-### Generazione Idee
-```bash
-# Genera un'idea
-npm run generate-idea
+Le pull request sono benvenute. Per modifiche importanti, apri prima un issue per discutere cosa vorresti cambiare.
 
-# Avvia il generatore giornaliero
-npm start
+## Licenza 📄
 
-# Avvia lo scheduler
-npm run scheduler
-```
-
-### Documentazione
-```bash
-# Sincronizza la documentazione con GitHub
-npm run docs:sync
-
-# Costruisci la documentazione
-npm run docs:build
-
-# Avvia il server di documentazione
-npm run docs:serve
-```
-
-## 🤝 Contribuire
-
-1. Fork il repository
-2. Crea un branch per la tua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit le tue modifiche (`git commit -m 'Add some AmazingFeature'`)
-4. Push sul branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
-
-## 📄 Licenza
-
-Questo progetto è distribuito con la licenza MIT. Vedi il file [LICENSE](LICENSE) per maggiori dettagli.
-
-## 📞 Supporto
-
-Per supporto tecnico o domande:
-- 📧 support@ideagenerator.com
-- 💬 [Discord Community](https://discord.gg/ideagenerator)
-- 📱 [Twitter](https://twitter.com/ideagenerator) 
+[MIT](https://choosealicense.com/licenses/mit/) 

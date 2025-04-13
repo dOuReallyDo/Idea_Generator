@@ -4,268 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idea Generator - Documentazione</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
+            --primary-color: #2d3748;
+            --secondary-color: #4a5568;
+            --accent-color: #4299e1;
+            --background-color: #f7fafc;
+            --text-color: #2d3748;
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
         }
-        
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
         .sidebar {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-            padding: 48px 0 0;
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            width: 300px;
             background-color: var(--primary-color);
             color: white;
-        }
-        
-        .sidebar-sticky {
-            position: relative;
-            top: 0;
-            height: calc(100vh - 48px);
-            padding-top: .5rem;
-            overflow-x: hidden;
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
             overflow-y: auto;
         }
-        
-        .nav-link {
-            color: rgba(255, 255, 255, .75);
-            padding: .5rem 1rem;
-        }
-        
-        .nav-link:hover {
-            color: rgba(255, 255, 255, 1);
-        }
-        
-        .nav-link.active {
-            color: white;
-            background-color: var(--secondary-color);
-        }
-        
+
         .main-content {
-            margin-left: 250px;
+            flex: 1;
+            margin-left: 300px;
             padding: 2rem;
         }
-        
-        .section {
-            margin-bottom: 3rem;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: white;
+            text-decoration: none;
         }
-        
-        .code-block {
-            background-color: #f8f9fa;
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background-color: #edf2f7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #edf2f7;
             padding: 1rem;
-            border-radius: .25rem;
+            border-radius: 4px;
+            overflow-x: auto;
             margin: 1rem 0;
         }
-        
-        .status-badge {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
+
+        .note {
+            background-color: #ebf8ff;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
         }
-        
-        .status-waiting { background-color: #ffc107; }
-        .status-developing { background-color: #28a745; }
-        .status-testing { background-color: #17a2b8; }
-        .status-completed { background-color: #6c757d; }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#overview">
-                        <i class="bi bi-house-door"></i> Panoramica
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#technical">
-                        <i class="bi bi-code-slash"></i> Documentazione Tecnica
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#user">
-                        <i class="bi bi-person"></i> Guida Utente
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#dashboard">
-                        <i class="bi bi-speedometer2"></i> Dashboard
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <section id="overview" class="section">
-            <h1>Idea Generator 🤖</h1>
-            <p class="lead">Sistema automatico per la generazione e sviluppo di idee innovative</p>
+    <div class="container">
+        <nav class="sidebar">
+            <a href="#" class="logo">Idea Generator</a>
             
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-lightbulb"></i> Generazione Idee</h5>
-                            <p class="card-text">Genera automaticamente idee innovative per progetti software</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-robot"></i> Sviluppo AutoDev</h5>
-                            <p class="card-text">Sviluppo automatico delle idee con AutoDev</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-github"></i> GitHub Sync</h5>
-                            <p class="card-text">Sincronizzazione automatica con GitHub</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="nav-section">
+                <h3>Introduzione</h3>
+                <ul class="nav-links">
+                    <li><a href="#overview">Panoramica</a></li>
+                    <li><a href="#features">Funzionalità</a></li>
+                </ul>
             </div>
-        </section>
 
-        <section id="technical" class="section">
-            <h2>Documentazione Tecnica</h2>
-            
-            <div class="accordion" id="technicalAccordion">
-                <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#architecture">
-                            Architettura
-                        </button>
-                    </h3>
-                    <div id="architecture" class="accordion-collapse collapse show" data-bs-parent="#technicalAccordion">
-                        <div class="accordion-body">
-                            <h4>Componenti Principali</h4>
-                            <ul>
-                                <li><strong>Idea Generator</strong>: Genera idee di progetto basate su template predefiniti</li>
-                                <li><strong>AutoDev Integration</strong>: Gestisce l'integrazione con AutoDev</li>
-                                <li><strong>GitHub Sync</strong>: Sincronizza idee e progetti con GitHub</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#api">
-                            API
-                        </button>
-                    </h3>
-                    <div id="api" class="accordion-collapse collapse" data-bs-parent="#technicalAccordion">
-                        <div class="accordion-body">
-                            <h4>generateDailyIdeas()</h4>
-                            <div class="code-block">
-                                <pre><code>const { generateDailyIdeas } = require('./src/generateIdea');
-const ideas = await generateDailyIdeas(3);</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="nav-section">
+                <h3>Installazione</h3>
+                <ul class="nav-links">
+                    <li><a href="#requirements">Requisiti</a></li>
+                    <li><a href="#setup">Configurazione</a></li>
+                </ul>
             </div>
-        </section>
 
-        <section id="user" class="section">
-            <h2>Guida Utente</h2>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Come Funziona</h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Generazione automatica giornaliera</li>
-                                <li class="list-group-item">Validazione automatica</li>
-                                <li class="list-group-item">Sviluppo con AutoDev</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Stato dei Progetti</h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><span class="status-badge status-waiting"></span> In Attesa</li>
-                                <li class="list-group-item"><span class="status-badge status-developing"></span> In Sviluppo</li>
-                                <li class="list-group-item"><span class="status-badge status-testing"></span> In Test</li>
-                                <li class="list-group-item"><span class="status-badge status-completed"></span> Completato</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="nav-section">
+                <h3>Utilizzo</h3>
+                <ul class="nav-links">
+                    <li><a href="#generation">Generazione Idee</a></li>
+                    <li><a href="#publishing">Pubblicazione</a></li>
+                    <li><a href="#scheduling">Pianificazione</a></li>
+                </ul>
             </div>
-        </section>
 
-        <section id="dashboard" class="section">
-            <h2>Dashboard</h2>
-            <p>La dashboard è accessibile all'indirizzo: <a href="https://dashboard.ideagenerator.com">dashboard.ideagenerator.com</a></p>
-            
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Funzionalità Dashboard</h5>
-                    <ul>
-                        <li>Visualizzazione idee generate</li>
-                        <li>Monitoraggio stato progetti</li>
-                        <li>Filtri e ricerca</li>
-                        <li>Statistiche e report</li>
-                    </ul>
-                </div>
+            <div class="nav-section">
+                <h3>Integrazione</h3>
+                <ul class="nav-links">
+                    <li><a href="#github">GitHub Integration</a></li>
+                    <li><a href="#autodev">AutoDev Integration</a></li>
+                </ul>
             </div>
-        </section>
-    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Smooth scroll per i link interni
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+            <div class="nav-section">
+                <h3>Manutenzione</h3>
+                <ul class="nav-links">
+                    <li><a href="#logs">Logs</a></li>
+                    <li><a href="#troubleshooting">Risoluzione Problemi</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        // Aggiorna la navigazione attiva
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 60) {
-                    current = section.getAttribute('id');
-                }
-            });
+        <main class="main-content">
+            <section id="overview" class="content-section">
+                <h1>Idea Generator - Documentazione</h1>
+                <p>Benvenuto nella documentazione di Idea Generator, un sistema automatizzato per la generazione e pubblicazione di idee per applicazioni software.</p>
+            </section>
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+            <section id="features" class="content-section">
+                <h2>Funzionalità Principali</h2>
+                <ul>
+                    <li>Generazione automatica di idee per applicazioni</li>
+                    <li>Pubblicazione automatica su GitHub</li>
+                    <li>Integrazione con AutoDev per lo sviluppo</li>
+                    <li>Pianificazione giornaliera delle pubblicazioni</li>
+                    <li>Logging dettagliato delle operazioni</li>
+                </ul>
+            </section>
+
+            <section id="requirements" class="content-section">
+                <h2>Requisiti di Sistema</h2>
+                <ul>
+                    <li>Node.js v18 o superiore</li>
+                    <li>npm v8 o superiore</li>
+                    <li>Accesso a GitHub con token API</li>
+                    <li>AutoDev configurato (opzionale)</li>
+                </ul>
+            </section>
+
+            <section id="setup" class="content-section">
+                <h2>Configurazione</h2>
+                <h3>Installazione Dependencies</h3>
+                <pre><code>npm install</code></pre>
+
+                <h3>Configurazione GitHub Token</h3>
+                <p>Creare un file <code>.env</code> nella root del progetto:</p>
+                <pre><code>GITHUB_TOKEN=il_tuo_token_qui</code></pre>
+            </section>
+
+            <section id="generation" class="content-section">
+                <h2>Generazione Idee</h2>
+                <p>Per generare idee manualmente:</p>
+                <pre><code>node scripts/generateIdea.js</code></pre>
+                
+                <div class="note">
+                    Le idee vengono generate in base alle categorie predefinite nel sistema.
+                </div>
+            </section>
+
+            <section id="publishing" class="content-section">
+                <h2>Pubblicazione su GitHub</h2>
+                <p>Le idee vengono automaticamente pubblicate come issue nel repository configurato.</p>
+                <p>Ogni idea include:</p>
+                <ul>
+                    <li>Titolo e descrizione</li>
+                    <li>Obiettivo principale</li>
+                    <li>Funzionalità chiave</li>
+                    <li>Requisiti tecnici</li>
+                    <li>Timeline di sviluppo</li>
+                    <li>Risorse necessarie</li>
+                </ul>
+            </section>
+
+            <section id="scheduling" class="content-section">
+                <h2>Pianificazione Automatica</h2>
+                <p>Il sistema può essere configurato per generare e pubblicare idee automaticamente:</p>
+                <pre><code>node scripts/dailyGenerator.js</code></pre>
+                
+                <div class="note">
+                    Per impostazione predefinita, le idee vengono generate alle 9:00 AM ogni giorno.
+                </div>
+            </section>
+
+            <section id="github" class="content-section">
+                <h2>Integrazione con GitHub</h2>
+                <p>Il sistema utilizza l'API di GitHub per:</p>
+                <ul>
+                    <li>Creare nuove issue per le idee</li>
+                    <li>Gestire le etichette delle issue</li>
+                    <li>Tracciare lo stato delle idee</li>
+                </ul>
+            </section>
+
+            <section id="autodev" class="content-section">
+                <h2>Integrazione con AutoDev</h2>
+                <p>Ogni idea generata include un prompt ottimizzato per AutoDev, contenente:</p>
+                <ul>
+                    <li>Requisiti tecnici dettagliati</li>
+                    <li>Stack tecnologico consigliato</li>
+                    <li>Timeline di sviluppo</li>
+                    <li>Risorse necessarie</li>
+                </ul>
+            </section>
+
+            <section id="logs" class="content-section">
+                <h2>Gestione Logs</h2>
+                <p>I logs vengono salvati nella directory <code>logs/</code> e includono:</p>
+                <ul>
+                    <li>Log di generazione idee</li>
+                    <li>Log di pubblicazione</li>
+                    <li>Log di errore</li>
+                </ul>
+            </section>
+
+            <section id="troubleshooting" class="content-section">
+                <h2>Risoluzione Problemi</h2>
+                <h3>Errori Comuni</h3>
+                <ul>
+                    <li><strong>Errore di autenticazione GitHub</strong>: Verificare il token nel file .env</li>
+                    <li><strong>Errore di generazione</strong>: Controllare i logs per dettagli</li>
+                    <li><strong>Errore di pubblicazione</strong>: Verificare i permessi del repository</li>
+                </ul>
+            </section>
+        </main>
+    </div>
 </body>
 </html> 
